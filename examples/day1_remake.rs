@@ -1,3 +1,4 @@
+use core::num;
 use std::fs;
 use std::str::Lines;
 
@@ -9,7 +10,7 @@ fn main() {
 
     let lines = contents.lines();
     println!("{}", part1(lines.clone()));
-    println!("{}", part2(lines));
+    println!("{}", part2_new(lines));
 }
 
 fn part1(lines: Lines) -> i32 {
@@ -34,4 +35,19 @@ fn part2(lines: Lines) -> i32 {
         .count()
         .try_into()
         .unwrap()
+}
+
+fn part2_new(lines: Lines) -> i32 {
+    let numbers = lines
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect::<Vec<i32>>();
+    let mut count = 0;
+
+    for index in 3..numbers.len() {
+        if numbers[index] > numbers[index - 3] {
+            count += 1;
+        }
+    }
+
+    count
 }
