@@ -17,16 +17,15 @@ fn part1(lines: Lines) -> i32 {
     let mut y = 0;
 
     for line in lines {
-        let splitted: Vec<&str> = line.split(' ').collect();
-        if let [cmd, num_str] = *splitted.as_slice() {
-            let num: i32 = num_str.parse().unwrap();
+        let mut splitted = line.split(' ');
+        let cmd = splitted.next().unwrap();
+        let num: i32 = splitted.next().unwrap().parse().unwrap();
 
-            match cmd {
-                "forward" => x += num,
-                "down" => y += num,
-                "up" => y -= num,
-                _ => unreachable!(),
-            }
+        match cmd {
+            "forward" => x += num,
+            "down" => y += num,
+            "up" => y -= num,
+            _ => unreachable!(),
         }
     }
     x * y
@@ -38,19 +37,18 @@ fn part2(lines: Lines) -> i32 {
     let mut aim = 0;
 
     for line in lines {
-        let splitted: Vec<&str> = line.split(' ').collect();
-        if let [cmd, num_str] = *splitted.as_slice() {
-            let num: i32 = num_str.parse().unwrap();
+        let mut splitted = line.split(' ');
+        let cmd = splitted.next().unwrap();
+        let num: i32 = splitted.next().unwrap().parse().unwrap();
 
-            match cmd {
-                "forward" => {
-                    x += num;
-                    y += aim * num;
-                }
-                "down" => aim += num,
-                "up" => aim -= num,
-                _ => unreachable!(),
+        match cmd {
+            "forward" => {
+                x += num;
+                y += aim * num;
             }
+            "down" => aim += num,
+            "up" => aim -= num,
+            _ => unreachable!(),
         }
     }
     x * y
