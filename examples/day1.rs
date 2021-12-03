@@ -2,8 +2,6 @@ use std::fs;
 use std::str::Lines;
 
 fn main() {
-    println!("day1!");
-
     let contents =
         fs::read_to_string("./inputs/day1.txt").expect("Something went wrong reading the file");
 
