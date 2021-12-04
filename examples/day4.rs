@@ -63,7 +63,6 @@ impl<'a> Iterator for BoardColumnIter<'a> {
     }
 }
 impl Board {
-    #[allow(clippy::ptr_arg, dead_code)]
     fn check_win(&self) -> bool {
         let mut vertical = false;
         for col_index in 0..5 {
