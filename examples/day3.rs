@@ -1,5 +1,4 @@
 use std::fs;
-use std::ops::Not;
 use std::str::Lines;
 
 fn main() {
