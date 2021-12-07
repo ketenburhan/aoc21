@@ -1,4 +1,6 @@
-use std::{collections::HashMap, fs, str::FromStr};
+use std::{collections::HashMap, str::FromStr};
+
+const DATA: &str = include_str!("data.txt");
 
 struct Crabs(HashMap<u16, usize>);
 impl FromStr for Crabs {
@@ -17,9 +19,7 @@ impl FromStr for Crabs {
 }
 
 fn main() {
-    let contents =
-        fs::read_to_string("./inputs/day7.txt").expect("Something went wrong reading the file");
-    let crabs = Crabs::from_str(&contents).unwrap();
+    let crabs = Crabs::from_str(DATA).unwrap();
 
     println!("{:#?}", crabs.0);
 

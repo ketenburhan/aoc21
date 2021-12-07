@@ -1,17 +1,15 @@
 use regex::Regex;
-use std::fs;
+
+const DATA: &str = include_str!("data.txt");
 
 type Floor = [[u32; 1000]; 1000];
 static DEF_FLOOR: Floor = [[0; 1000]; 1000];
 
 fn main() {
-    let contents =
-        fs::read_to_string("./inputs/day5.txt").expect("Something went wrong reading the file");
-
     let mut ocean_floor = DEF_FLOOR;
 
     let reg = Regex::new(r#"(\d+),(\d+) -> (\d+),(\d+)"#).unwrap();
-    let captures = reg.captures_iter(&contents);
+    let captures = reg.captures_iter(DATA);
 
     let coords: Vec<_> = captures
         .map(|cap| {
@@ -37,7 +35,7 @@ fn main() {
             }
         }
     });
-    println!("{}", part1(&ocean_floor));
+    println!("part1: {}", part1(&ocean_floor));
     coords.iter().for_each(|&(x1, y1, x2, y2)| {
         let (y_min, y_max) = if y1 < y2 { (y1, y2) } else { (y2, y1) };
         let (x_min, x_max) = if x1 < x2 { (x1, x2) } else { (x2, x1) };
@@ -58,7 +56,7 @@ fn main() {
             }
         }
     });
-    println!("{}", part1(&ocean_floor));
+    println!("part2: {}", part1(&ocean_floor));
 }
 fn part1(ocean_floor: &Floor) -> usize {
     ocean_floor.iter().flatten().filter(|&&x| x >= 2).count()

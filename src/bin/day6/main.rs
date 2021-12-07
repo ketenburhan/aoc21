@@ -1,4 +1,6 @@
-use std::{collections::HashMap, fs, str::FromStr};
+use std::str::FromStr;
+
+const DATA: &str = include_str!("data.txt");
 
 #[derive(Clone, Debug, Default)]
 struct Fishes([usize; 9], usize);
@@ -30,10 +32,7 @@ impl FromStr for Fishes {
     }
 }
 fn main() {
-    let contents =
-        fs::read_to_string("./inputs/day6.txt").expect("Something went wrong reading the file");
-
-    let fishes: Fishes = Fishes::from_str(&contents).unwrap();
+    let fishes: Fishes = Fishes::from_str(DATA).unwrap();
 
     println!("part1: {}", part1(fishes.clone()));
     println!("part2: {}", part2(fishes));

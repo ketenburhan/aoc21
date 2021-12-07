@@ -1,5 +1,6 @@
-use std::fs;
 use std::str::FromStr;
+
+const DATA: &str = include_str!("data.txt");
 
 #[derive(Clone, Debug)]
 struct GameState {
@@ -96,13 +97,10 @@ impl Board {
 }
 
 fn main() {
-    let contents =
-        fs::read_to_string("./inputs/day4.txt").expect("Something went wrong reading the file");
+    let game_state = GameState::from_str(DATA).unwrap();
 
-    let game_state = GameState::from_str(&contents).unwrap();
-
-    println!("{}", part1(game_state.clone()));
-    println!("{}", part2(game_state));
+    println!("part1: {}", part1(game_state.clone()));
+    println!("part2: {}", part2(game_state));
 }
 
 fn part1(game_state: GameState) -> i64 {

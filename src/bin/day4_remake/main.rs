@@ -1,4 +1,4 @@
-use std::fs;
+const DATA: &str = include_str!("data.txt");
 
 #[derive(Clone, Debug)]
 struct Board([i8; 25], bool);
@@ -44,10 +44,7 @@ impl TryInto<Board> for Vec<i8> {
     }
 }
 fn main() {
-    let contents =
-        fs::read_to_string("./inputs/day4.txt").expect("Something went wrong reading the file");
-
-    let mut splitted = contents.split("\n\n");
+    let mut splitted = DATA.split("\n\n");
 
     let numbers: Vec<i8> = splitted
         .next()
@@ -82,8 +79,8 @@ fn main() {
         })
     }
 
-    println!("{}", part1(&results));
-    println!("{}", part2(&results));
+    println!("part1: {}", part1(&results));
+    println!("part2: {}", part2(&results));
 }
 
 fn part1(results: &[(i8, Board)]) -> i64 {

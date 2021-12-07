@@ -1,13 +1,11 @@
-use std::fs;
 use std::str::Lines;
 
-fn main() {
-    let contents =
-        fs::read_to_string("./inputs/day1.txt").expect("Something went wrong reading the file");
+const DATA: &str = include_str!("data.txt");
 
-    let lines = contents.lines();
-    println!("{}", part1(lines.clone()));
-    println!("{}", part2_new(lines));
+fn main() {
+    let lines = DATA.lines();
+    println!("part1: {}", part1(lines.clone()));
+    println!("part2: {}", part2_new(lines));
 }
 
 fn part1(lines: Lines) -> i32 {
@@ -20,6 +18,7 @@ fn part1(lines: Lines) -> i32 {
         .try_into()
         .unwrap()
 }
+#[allow(dead_code)]
 fn part2(lines: Lines) -> i32 {
     lines
         .map(|x| x.parse::<i32>().unwrap())
